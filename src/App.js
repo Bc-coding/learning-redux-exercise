@@ -3,7 +3,7 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import CartContainer from "./components/CartContainer";
 // items
-import cartItems from "./cart-items";
+// import cartItems from "./cart-items";
 
 // redux stuff
 // store - stores data, think of state
@@ -20,12 +20,13 @@ import reducer from "./reducer";
 // react-redux - Provider - wraps app, connect - used in components
 import { Provider } from "react-redux";
 
+/***** we could set up reducer default state ******/
 // inital state
-const initialStore = {
-  cart: cartItems,
-  total: 0,
-  amount: 0,
-};
+// const initialStore = {
+//   cart: cartItems,
+//   total: 0,
+//   amount: 0,
+// };
 
 // dispatch method - send actions to the store
 // actions (objects) - MUST HAVE TYPE PROPERTY - what kind of action
@@ -34,7 +35,8 @@ const initialStore = {
 // when we create a store in Redux, we have access to get state function
 // store.getState() - we will get back our state
 
-const store = createStore(reducer, initialStore);
+// const store = createStore(reducer, initialStore); // move initialStore to reducer.js
+const store = createStore(reducer);
 
 // dispatch an action to store
 // store.dispatch({ type: DECREASE });
