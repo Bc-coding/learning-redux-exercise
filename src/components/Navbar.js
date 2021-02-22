@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { GET_AMOUNT } from "../action";
+import { TOGGLE_AMOUNT } from "../action";
 
 const Navbar = ({ amount }) => {
   return (
