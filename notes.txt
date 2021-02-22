@@ -1,0 +1,15 @@
+Store --> UI --->  Actions --->  Reducer ---> Store again in cycle
+
+store == state in the concept of redux
+
+How we update our store is by dispatching an action
+e.g  dispatch an add_to_cart action
+
+Reducer is a function that takes in two arguments, state and action
+Reducer doesn't mutate state directly. We always should return a new state from reducer in reducer we are going to handle
+
+CREATE STORE:
+we need 3 things to create store
+1. create function from redux
+2. a variabel which will hold the value 
+3. reduce their function
