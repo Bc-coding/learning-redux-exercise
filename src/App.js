@@ -4,8 +4,8 @@ import Navbar from "./components/Navbar";
 import CartContainer from "./components/CartContainer";
 // items
 import cartItems from "./cart-items";
-// redux stuff
 
+// redux stuff
 // store - stores data, think of state
 // reducer - function that used to update store
 // two arguments - state, action
@@ -14,6 +14,18 @@ import cartItems from "./cart-items";
 // return updated or old state
 
 import { createStore } from "redux";
+import { DECREASE, INCREASE } from "./action";
+import reducer from "./reducer";
+
+// react-redux - Provider - wraps app, connect - used in components
+import { Provider } from "react-redux";
+
+// inital state
+const initialStore = {
+  cart: cartItems,
+  total: 105,
+  amount: 5,
+};
 
 // dispatch method - send actions to the store
 // actions (objects) - MUST HAVE TYPE PROPERTY - what kind of action
@@ -22,53 +34,22 @@ import { createStore } from "redux";
 // when we create a store in Redux, we have access to get state function
 // store.getState() - we will get back our state
 
-// inital state
-const initialStore = {
-  count: 0,
-};
-// reducer
-function reducer(state, action) {
-  console.log({ state, action });
-
-  if (action.type === "DECREASE") {
-    console.log("IT IS DECREASING");
-    // state.count = state.count - 1; // THIS IS MUTATING THE STATE, NOT ALLOWED IN REDUX!
-    return { count: state.count - 1 };
-  }
-
-  if (action.type === "INCREASE") {
-    console.log("IT IS INCREASING");
-    return { count: state.count + 1 };
-  }
-
-  if (action.type === "RESET") {
-    console.log("IT IS RESETTING");
-    return { count: 0 };
-  }
-
-  return state;
-}
 const store = createStore(reducer, initialStore);
 
 // dispatch an action to store
-store.dispatch({ type: "DECREASE" });
+// store.dispatch({ type: DECREASE });
+// store.dispatch({ type: INCREASE });
 
-store.dispatch({ type: "INCREASE" });
-
-store.dispatch({ type: "INCREASE" });
-
-store.dispatch({ type: "RESET" });
-
-console.log(store.getState());
+// console.log(store.getState());
 
 function App() {
   // cart setup
 
   return (
-    <main>
-      <Navbar cart={store.getState()} />
-      <CartContainer cart={cartItems} />
-    </main>
+    <Provider store={store}>
+      <Navbar />
+      <CartContainer />
+    </Provider>
   );
 }
 
