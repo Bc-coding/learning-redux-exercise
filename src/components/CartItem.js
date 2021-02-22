@@ -1,6 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { INCREASE, DECREASE, REMOVE, TOGGLE_AMOUNT } from "../action";
+import {
+  INCREASE,
+  DECREASE,
+  REMOVE,
+  TOGGLE_AMOUNT,
+  removeItem,
+} from "../action";
 
 const CartItem = ({
   img,
@@ -57,7 +63,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   const { id, amount } = ownProps;
 
   return {
-    remove: () => dispatch({ type: REMOVE, payload: { id } }),
+    // remove: () => dispatch({ type: REMOVE, payload: { id } }),
+    remove: () => dispatch(removeItem(id)),
     increase: () => dispatch({ type: INCREASE, payload: { id } }),
     decrease: () => dispatch({ type: DECREASE, payload: { id, amount } }),
   };
